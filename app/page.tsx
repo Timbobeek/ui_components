@@ -44,6 +44,11 @@ export default function Home() {
             TBD
           </button>
         </Link>
+        <Link href="/tictactoe">
+          <button className="bg-emerald-800 text-white p-7 hover:bg-pink-400">
+            Tic-Tac-Toe
+          </button>
+        </Link>
       </div>
     </div>
   );
