@@ -4,20 +4,35 @@ import Link from "next/link";
 import { useState } from "react";
 import { MoveLeft, MoveDown } from "lucide-react";
 
-function Square({ value, onSquareClick }) {
+type SquareData = {
+  value: "X" | "O" | null;
+  onSquareClick: () => void;
+};
+
+type BoardData = {
+  xIsNext: boolean;
+  squares: ("X" | "O" | null)[];
+  onPlay: (arg: ("X" | "O" | null)[]) => void;
+};
+
+function Square({ value, onSquareClick }: SquareData) {
   return (
-    <button className="bg-white border-black border-2 border-solid float-left text-5xl leading-3 -mr-px -mt-px p-0 text-center w-36 h-36 text-black" onClick={onSquareClick}>
+    <button
+      className="bg-white border-black border-2 border-solid float-left text-5xl leading-3 -mr-px -mt-px p-0 text-center w-36 h-36 text-black"
+      onClick={onSquareClick}
+    >
       {value}
     </button>
   );
 }
 
-function Board({ xIsNext, squares, onPlay }) {
-  function handleClick(i) {
+function Board({ xIsNext, squares, onPlay }: BoardData) {
+  function handleClick(i: number) {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
     const nextSquares = squares.slice();
+
     if (xIsNext) {
       nextSquares[i] = "X";
     } else {
@@ -57,18 +72,18 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 
 export default function Game() {
-  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [history, setHistory] = useState<("X" | "O" | null)[][]>([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
-  function handlePlay(nextSquares) {
+  function handlePlay(nextSquares: BoardData["squares"]) {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
   }
 
-  function jumpTo(nextMove) {
+  function jumpTo(nextMove: number) {
     setCurrentMove(nextMove);
   }
 
@@ -81,7 +96,12 @@ export default function Game() {
     }
     return (
       <li key={move}>
-        <button className="bg-white border-solid border-pink-500 border-2 m-2 p-2" onClick={() => jumpTo(move)}>{description}</button>
+        <button
+          className="bg-white border-solid border-pink-500 border-2 m-2 p-2"
+          onClick={() => jumpTo(move)}
+        >
+          {description}
+        </button>
       </li>
     );
   });
@@ -101,8 +121,10 @@ export default function Game() {
           />
         </div>
         <div className=" flex flex-col items-center w-64 h-64 ">
-          <p className=" text-pink-500 text-center text-xl text-black flex">
-            <MoveDown/>Moves History<MoveDown/>
+          <p className=" text-pink-500 text-center text-xl flex">
+            <MoveDown />
+            Moves History
+            <MoveDown />
           </p>
           <ol className="text-pink-500 flex flex-col items-center ">{moves}</ol>
         </div>
@@ -111,7 +133,7 @@ export default function Game() {
   );
 }
 
-function calculateWinner(squares) {
+function calculateWinner(squares: BoardData["squares"]) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -130,4 +152,3 @@ function calculateWinner(squares) {
   }
   return null;
 }
-
