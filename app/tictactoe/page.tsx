@@ -41,10 +41,15 @@ function Board({ xIsNext, squares, onPlay }: BoardData) {
     onPlay(nextSquares);
   }
 
+  const emptySquare = (square: SquareData["value"]) => square === null;
+  const fullBoard = !squares.some(emptySquare);
+
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
     status = "Winner: " + winner;
+  } else if (fullBoard) {
+    status = "It's a tie!";
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
@@ -72,7 +77,9 @@ function Board({ xIsNext, squares, onPlay }: BoardData) {
 }
 
 export default function Game() {
-  const [history, setHistory] = useState<("X" | "O" | null)[][]>([Array(9).fill(null)]);
+  const [history, setHistory] = useState<("X" | "O" | null)[][]>([
+    Array(9).fill(null),
+  ]);
   const [currentMove, setCurrentMove] = useState(0);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
