@@ -55,7 +55,7 @@ export default function DiscountSettings() {
     discountType: discount,
     weight,
     price,
-  });
+  })?.toFixed(2); //this can change
 
   return (
     <div className="flex flex-col items-center justify-center">
