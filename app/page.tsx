@@ -55,6 +55,13 @@ export default function Home() {
           </button>
         </Link>
       </div>
+      <div>
+        <Link href="/toggleMsg">
+          <button className="bg-blue-600 text-white p-7 hover:bg-pink-400">
+            Toggle Message UI
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
