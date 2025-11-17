@@ -49,6 +49,11 @@ export default function Home() {
             Tic-Tac-Toe
           </button>
         </Link>
+        <Link href="/discountShop">
+          <button className="bg-yellow-900 text-white p-7 hover:bg-pink-400">
+            Discount Shop UI
+          </button>
+        </Link>
       </div>
     </div>
   );
