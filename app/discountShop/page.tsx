@@ -58,7 +58,7 @@ export default function DiscountSettings() {
   })?.toFixed(2); //this can change
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center ">
       <Link href="/">
         <MoveLeft className="m-5" />
       </Link>
