@@ -62,8 +62,8 @@ export default function VoteSystem() {
       <header className="text-5xl text-orange-200 mt-5">Vote</header>
 
       <div className="flex">
-        {titles.map((title) => {
-          return <Voter title={title} />;
+        {titles.map((title, index) => {
+          return <Voter key={index} title={title} />;
         })}
       </div>
     </div>
