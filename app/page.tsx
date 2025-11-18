@@ -5,8 +5,12 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center min-h-screen font-[family-name:var(--font-geist-sans)]">
       <ModeToggle />
-      <header className="m-5 text-5xl">Basic UI Components</header>
-      <div>
+      <div className="m-5 text-center">
+        <header className="m-5 text-5xl">Basic UI Components</header>
+        <p>&lt;building blocks of my React understanding&gt;</p>
+      </div>
+
+      <div className="">
         <Link href="/slideshow">
           <button className="bg-yellow-200 text-black p-7 hover:bg-pink-400">
             Slideshow UI
@@ -64,6 +68,11 @@ export default function Home() {
         <Link href="/inputFocus">
           <button className="bg-red-300 text-black p-7 hover:bg-pink-400">
             Input Focus Demo
+          </button>
+        </Link>
+        <Link href="/usernameChange">
+          <button className="bg-amber-700 text-white p-7 hover:bg-pink-400">
+            Username Change UI
           </button>
         </Link>
       </div>
