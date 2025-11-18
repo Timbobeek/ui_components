@@ -61,6 +61,11 @@ export default function Home() {
             Toggle Message UI
           </button>
         </Link>
+        <Link href="/inputFocus">
+          <button className="bg-red-300 text-black p-7 hover:bg-pink-400">
+            Input Focus Demo
+          </button>
+        </Link>
       </div>
     </div>
   );
