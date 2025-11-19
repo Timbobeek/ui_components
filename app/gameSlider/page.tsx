@@ -4,19 +4,45 @@ import Link from "next/link";
 import { useState } from "react";
 import { MoveLeft } from "lucide-react";
 
+type attributeName = "strength" | "speed";
+
 export default function CharacterStats() {
   const totalPoints = 15;
+
   const [strength, setStrength] = useState(0);
   const [speed, setSpeed] = useState(0);
 
-  const handleAttributeChange = (event, attributeName) => {
+  const handleAttributeChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    attributeName: attributeName
+  ) => {
+    const newValue = Number(event.target.value);
+
     if (attributeName === "strength") {
-      setStrength(event.target.value);
-      if (speed + strength > totalPoints) {
-        setSpeed(totalPoints - strength);
+      const newStrength = newValue;
+      const newSpeed = speed;
+
+      const sum = newStrength + newSpeed;
+
+      if (sum > totalPoints) {
+        // reduce the other slider so total stays 15
+        setSpeed(totalPoints - newStrength);
       }
-    } else if (attributeName === "speed") {
-      setSpeed(event.target.value);
+
+      setStrength(newStrength);
+    }
+
+    if (attributeName === "speed") {
+      const newSpeed = newValue;
+      const newStrength = strength;
+
+      const sum = newSpeed + newStrength;
+
+      if (sum > totalPoints) {
+        setStrength(totalPoints - newSpeed);
+      }
+
+      setSpeed(newSpeed);
     }
   };
 
@@ -29,8 +55,11 @@ export default function CharacterStats() {
         Character Stats Sliders UI
       </header>
       <div className="m-10">
-        Character stats:{" "}
-        <span className="text-green-500 text-xl">{totalPoints}</span> points
+        Points left:{" "}
+        <span className="text-green-500 text-xl">
+          {totalPoints - speed - strength}
+        </span>{" "}
+        points
         <div className="m-2 text-red-500">
           <input
             type="range"
