@@ -52,46 +52,53 @@ export default function CharacterStats() {
       <Link href="/">
         <MoveLeft className="m-5" />
       </Link>
-      <header className="text-5xl text-stone-200 mt-5">
+      <header className="text-5xl text-pink-700 mt-5">
         Character Stats Sliders UI
       </header>
-      <div className="m-10">
+      <div className="m-10 flex flex-col items-center">
         Points left:{" "}
         <span className="text-green-500 text-xl">
           {totalPoints - speed - strength}
         </span>{" "}
-        points
-        <div className="m-2 text-red-500">
-          <input
-            type="range"
-            id="strength"
-            className="accent-red-500" //handle color affects the track color. but track color is chosen by browser/os automatically
-            min="0"
-            max={totalPoints}
-            value={strength}
-            step="1"
-            onChange={(event) => handleAttributeChange(event, "strength")}
-          />
-          Strength: <strong>{strength}</strong>
-        </div>
-        <div className="m-2 text-blue-500">
-          <input
-            type="range"
-            id="speed"
-            className="accent-blue-500"
-            min="0"
-            max={totalPoints}
-            value={speed}
-            step="1"
-            onChange={(event) => handleAttributeChange(event, "speed")}
-          />
-          Speed: <strong>{speed}</strong>
+        <div className="flex">
+          <div className="m-2 text-red-500">
+            <input
+              type="range"
+              id="strength"
+              className="accent-red-500" //handle color affects the track color. but track color is chosen by browser/os automatically
+              min="0"
+              max={totalPoints}
+              value={strength}
+              step="1"
+              onChange={(event) => handleAttributeChange(event, "strength")}
+            />
+            <p className="text-center">
+              Strength: <strong>{strength}</strong>
+            </p>
+          </div>
+          <div className="m-2 text-blue-500">
+            <input
+              type="range"
+              id="speed"
+              className="accent-blue-500"
+              min="0"
+              max={totalPoints}
+              value={speed}
+              step="1"
+              onChange={(event) => handleAttributeChange(event, "speed")}
+            />
+            <p className="text-center">
+              Speed: <strong>{speed}</strong>
+            </p>
+          </div>
         </div>
       </div>
-      <div className="flex items-center w-1/2 ">
-        <div className="m-5 bg-pink-900 p-3 border-4 border-white">
-          <p className="text-2xl m-5">Challening parts: </p>
-          <p>
+      <div className="flex w-1/2 ">
+        <div className="m-5 bg-pink-900 p-3 border-4 border-white w-1/2 ">
+          <p className="text-2xl m-5 text-center text-pink-300">
+            Challening parts{" "}
+          </p>
+          <p className="">
             The algorithm to write this slider system was the boggest challenge.
             Making sure the two slider values, total points value and points
             left value are all in sync. Initially, my points left value and sum
@@ -99,8 +106,10 @@ export default function CharacterStats() {
             the state. The state was lagging behind.
           </p>
         </div>
-        <div className="m-5 bg-lime-900 p-3 border-4 border-white">
-          <p className="text-2xl m-5">Things I learned here: </p>
+        <div className="m-5 bg-lime-900 p-3 border-4 border-white w-1/2 ">
+          <p className="text-2xl m-5 text-center text-lime-300">
+            Things I learned here{" "}
+          </p>
           <p>
             I wanted to change the color of the sliders. I found that property
             'accent' is responsible for changing the color of the handle, the
