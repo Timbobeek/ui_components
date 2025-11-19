@@ -16,7 +16,7 @@ export default function CharacterStats() {
     event: React.ChangeEvent<HTMLInputElement>,
     attributeName: attributeName
   ) => {
-    const newValue = Number(event.target.value);
+    const newValue = Number(event.target.value); // value received from onChange of any of the two sliders
 
     if (attributeName === "strength") {
       const newStrength = newValue;
@@ -25,6 +25,7 @@ export default function CharacterStats() {
       const sum = newStrength + newSpeed;
 
       if (sum > totalPoints) {
+        // if current strength + current speed > 15
         // reduce the other slider so total stays 15
         setSpeed(totalPoints - newStrength);
       }
@@ -64,6 +65,7 @@ export default function CharacterStats() {
           <input
             type="range"
             id="strength"
+            className="accent-red-500" //handle color affects the track color. but track color is chosen by browser/os automatically
             min="0"
             max={totalPoints}
             value={strength}
@@ -76,6 +78,7 @@ export default function CharacterStats() {
           <input
             type="range"
             id="speed"
+            className="accent-blue-500"
             min="0"
             max={totalPoints}
             value={speed}
@@ -83,6 +86,34 @@ export default function CharacterStats() {
             onChange={(event) => handleAttributeChange(event, "speed")}
           />
           Speed: <strong>{speed}</strong>
+        </div>
+      </div>
+      <div className="flex items-center w-1/2 ">
+        <div className="m-5 bg-pink-900 p-3 border-4 border-white">
+          <p className="text-2xl m-5">Challening parts: </p>
+          <p>
+            The algorithm to write this slider system was the boggest challenge.
+            Making sure the two slider values, total points value and points
+            left value are all in sync. Initially, my points left value and sum
+            of the slider values were async by 1, because of how I was changing
+            the state. The state was lagging behind.
+          </p>
+        </div>
+        <div className="m-5 bg-lime-900 p-3 border-4 border-white">
+          <p className="text-2xl m-5">Things I learned here: </p>
+          <p>
+            I wanted to change the color of the sliders. I found that property
+            'accent' is responsible for changing the color of the handle, the
+            thing we drag/slide. I set the handle color to{" "}
+            <strong className="text-red-500">red</strong> and{" "}
+            <strong className="text-blue-500">blue</strong>, respectively. Then
+            I noticed that now my two sliders have a different track color, the
+            thing we slide the handle through. Turns out, the OS/Browser
+            automatically choose the track color based on the color of the
+            handle. So, the red slider here has a white, light tracker because
+            the os/browser considers my red handle dark, so the track must be
+            the opposite. Blue is considered light, so the track is dark gray.
+          </p>
         </div>
       </div>
     </div>
