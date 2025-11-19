@@ -76,6 +76,13 @@ export default function Home() {
           </button>
         </Link>
       </div>
+      <div>
+        <Link href="/gameSlider">
+          <button className="bg-pink-700 text-white p-7 hover:bg-pink-400">
+            Character Stats Sliders UI
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
