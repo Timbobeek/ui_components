@@ -82,6 +82,11 @@ export default function Home() {
             Character Stats Sliders UI
           </button>
         </Link>
+        <Link href="/recordsSearch">
+          <button className="bg-lime-500 text-black p-7 hover:bg-pink-400">
+            Medical Records Search UI
+          </button>
+        </Link>
       </div>
     </div>
   );
