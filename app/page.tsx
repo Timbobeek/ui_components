@@ -87,6 +87,11 @@ export default function Home() {
             Medical Records Search UI
           </button>
         </Link>
+        <Link href="/effectAndPromise">
+          <button className="bg-yellow-500 text-black p-7 hover:bg-pink-400">
+            useEffect + Promise
+          </button>
+        </Link>
       </div>
     </div>
   );
