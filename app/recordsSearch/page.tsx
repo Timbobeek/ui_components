@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { useState } from "react";
 import { MoveLeft } from "lucide-react";
-import medical_records from "./medicalRecords";
+import { medical_records } from "./medicalRecords";
 import Search from "./Search";
 import Records from "./Records";
 
 export default function MedicalRecordsSearch() {
   const patients = medical_records; // this is done to avoid importing medical_records into every component
-  const [currentIndex, setCurrentIndex] = useState(null); // patient id (from 0 to 2 for each of the three patients)
+  const [currentIndex, setCurrentIndex] = useState<number | null>(null); // patient id (from 0 to 2 for each of the three patients)
   return (
     <div className="flex flex-col items-center content-center">
       <Link href="/">

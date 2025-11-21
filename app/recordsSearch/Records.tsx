@@ -1,6 +1,13 @@
 import React from "react";
+import { PatientRecords } from "./medicalRecords";
 
-function Records({ patients, currentIndex, setCurrentIndex }) {
+type Props = {
+  patients: PatientRecords[];
+  currentIndex: number | null;
+  setCurrentIndex: (index: number) => void;
+};
+
+function Records({ patients, currentIndex, setCurrentIndex }: Props) {
   if (currentIndex === null) return null; // if no patient selected, show no records
 
   const record = patients[currentIndex]; // the whole record of each patient
@@ -13,7 +20,7 @@ function Records({ patients, currentIndex, setCurrentIndex }) {
   };
 
   // in real life, function below can be avoided
-  function formatToDDMMYYYY(timestamp) {
+  function formatToDDMMYYYY(timestamp: number) {
     const date = new Date(timestamp);
 
     const day = String(date.getDate()).padStart(2, "0");

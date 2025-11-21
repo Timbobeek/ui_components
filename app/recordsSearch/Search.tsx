@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import { PatientRecords } from "./medicalRecords";
 
-function Search({ patients, setCurrentIndex }) {
+type Props = {
+  patients: PatientRecords[];
+  setCurrentIndex: (index: number) => void;
+};
+
+function Search({ patients, setCurrentIndex }: Props) {
   const [selected, setSelected] = useState("");
 
   const handleClick = () => {

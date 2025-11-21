@@ -1,4 +1,45 @@
-const medical_records = [
+export type Diagnosis = {
+  id: number;
+  name: string;
+  severity: number;
+};
+
+export type Vitals = {
+  bloodPressureDiastole: number;
+  bloodPressureSystole: number;
+  pulse: number;
+  breathingRate: number;
+  bodyTemperature: number;
+};
+
+export type Doctor = {
+  id: number;
+  name: string;
+};
+
+export type Meta = {
+  height: number;
+  weight: number;
+};
+
+export type Record = {
+  id: number;
+  timestamp: number;
+  diagnosis: Diagnosis;
+  vitals: Vitals;
+  doctor: Doctor;
+  userId: number;
+  userName: string;
+  userDob: string; // "DD-MM-YYYY" format
+  meta: Meta;
+};
+
+export type PatientRecords = {
+  id: string; // patient ID as string
+  data: Record[];
+};
+
+export const medical_records: PatientRecords[] = [
   {
     id: "1",
     data: [
@@ -826,4 +867,4 @@ const medical_records = [
   },
 ];
 
-export default medical_records;
+// export default medical_records;
