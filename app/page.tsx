@@ -99,6 +99,11 @@ export default function Home() {
             World Cup Draw v1
           </button>
         </Link>
+        <Link href="/worldCupDraw2">
+          <button className="bg-fuchsia-800 text-white p-7 hover:bg-pink-400">
+            World Cup Draw v2
+          </button>
+        </Link>
       </div>
     </div>
   );
