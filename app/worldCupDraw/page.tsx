@@ -123,6 +123,7 @@ export default function NextComponent() {
       >
         Hand of Materazzi
       </button>
+      <p>each click generates a new draw of all groups</p>
       <Groups teams={result} />
       <div className="flex w-1/2 ">
         <div className="m-5 bg-pink-900 p-3 border-4 border-white w-1/2 ">
