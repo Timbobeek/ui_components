@@ -4,21 +4,42 @@ import Link from "next/link";
 import { MoveLeft } from "lucide-react";
 import { useState } from "react";
 
-type Pots = string[][];
+export function drawOneTeam(
+  potsState: string[][],
+  setPotsState: React.Dispatch<React.SetStateAction<string[][]>>,
+  groups: string[][],
+  setGroups: React.Dispatch<React.SetStateAction<string[][]>>,
+  groupIndex: number,
+  setGroupIndex: React.Dispatch<React.SetStateAction<number>>,
+  potIndex: number,
+  setPotIndex: React.Dispatch<React.SetStateAction<number>>
+) {
+  if (groupIndex >= 12) return;
 
-function drawGenerator(pots: Pots) {
-  const potsCopy = pots.map((pot) => [...pot]); // made a copy, so we dont mutate the original pots
+  setPotsState((prev) => {
+    const newPots = prev.map((p) => [...p]);
+    const pot = newPots[potIndex];
 
-  const groups: string[][] = Array.from({ length: 12 }, () => []);
+    const hand = Math.floor(Math.random() * pot.length);
+    const team = pot[hand];
 
-  for (let i = 0; i < groups.length; i++) {
-    for (let j = 0; j < potsCopy.length; j++) {
-      const hand = Math.floor(Math.random() * potsCopy[j].length);
-      groups[i].push(potsCopy[j][hand]);
-      potsCopy[j].splice(hand, 1);
+    pot.splice(hand, 1);
+
+    setGroups((prevGroups) => {
+      const updated = prevGroups.map((g) => [...g]);
+      updated[groupIndex].push(team);
+      return updated;
+    });
+
+    if (potIndex < 3) {
+      setPotIndex(potIndex + 1);
+    } else {
+      setPotIndex(0);
+      setGroupIndex(groupIndex + 1);
     }
-  }
-  return groups;
+
+    return newPots;
+  });
 }
 
 type Props = {
@@ -103,11 +124,12 @@ export default function NextComponent() {
     ],
   ];
 
-  const [result, setResult] = useState<string[][]>([]);
-
-  const drawGroups = () => {
-    setResult(drawGenerator(pots));
-  };
+  const [potsState, setPotsState] = useState<string[][]>(pots); // live mutable pots
+  const [groups, setGroups] = useState<string[][]>(
+    Array.from({ length: 12 }, () => [])
+  );
+  const [groupIndex, setGroupIndex] = useState(0); // 0 → 11
+  const [potIndex, setPotIndex] = useState(0); // 0 -> 3
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -118,12 +140,23 @@ export default function NextComponent() {
         World Cup Draw UI (Gradual)
       </header>
       <button
-        onClick={drawGroups}
+        onClick={() =>
+          drawOneTeam(
+            potsState,
+            setPotsState,
+            groups,
+            setGroups,
+            groupIndex,
+            setGroupIndex,
+            potIndex,
+            setPotIndex
+          )
+        }
         className="bg-blue-500 p-3 m-5 hover:bg-blue-400"
       >
         Hand of Materazzi
       </button>
-      <Groups teams={result} />
+      <Groups teams={groups} />
       <div className="flex w-1/2 ">
         <div className="m-5 bg-pink-900 p-3 border-4 border-white w-1/2 ">
           <p className="text-2xl m-5 text-center text-pink-300">
