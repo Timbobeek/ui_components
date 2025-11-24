@@ -96,7 +96,7 @@ export default function Home() {
       <div>
         <Link href="/worldCupDraw">
           <button className="bg-cyan-300 text-black p-7 hover:bg-pink-400">
-            World Cup Draw
+            World Cup Draw v1
           </button>
         </Link>
       </div>

@@ -26,11 +26,12 @@ type Props = {
 };
 
 const Groups = (props: Props) => {
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   return (
     <div className="flex m-5">
       {props.teams.map((group: string[], index: number) => (
         <div key={index} className="m-3">
-          <p className="text-xl bg-pink-600 p-3">Group {index + 1} </p>
+          <p className="text-xl bg-pink-600 p-3">Group {alphabet[index]} </p>
           {group.map((team, i) => (
             <p key={i} className="bg-green-700 p-2">
               {team}
@@ -113,7 +114,9 @@ export default function NextComponent() {
       <Link href="/">
         <MoveLeft className="m-5" />
       </Link>
-      <header className="text-5xl text-cyan-300 mt-5">World Cup Draw UI</header>
+      <header className="text-5xl text-cyan-300 mt-5">
+        World Cup Draw UI (Instant)
+      </header>
       <button
         onClick={drawGroups}
         className="bg-blue-500 p-3 m-5 hover:bg-blue-400"
@@ -121,6 +124,32 @@ export default function NextComponent() {
         Hand of Materazzi
       </button>
       <Groups teams={result} />
+      <div className="flex w-1/2 ">
+        <div className="m-5 bg-pink-900 p-3 border-4 border-white w-1/2 ">
+          <p className="text-2xl m-5 text-center text-pink-300">
+            Challening parts{" "}
+          </p>
+          <p className="">
+            Writing the algorithm for the draw. Making sure teams get drawn from
+            correct pots in correct order. And then making sure teams do not
+            repeat. Also, I started with the UI and then went on to figure out
+            the mechanism when I already had everything split into multiple
+            components. Was hard on my brain visually to see what happens where.
+            I ended up writing the algorithm from scratch in a seperate doc and
+            then added the code into drawgenerator component once I verified my
+            algorithm works.
+          </p>
+        </div>
+        <div className="m-5 bg-lime-900 p-3 border-4 border-white w-1/2 ">
+          <p className="text-2xl m-5 text-center text-lime-300">
+            Things I learned here{" "}
+          </p>
+          <p>
+            map within a map can be done as long as each map is wrapped in its
+            own div
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
