@@ -6,11 +6,9 @@ export function drawOneTeam(
   groupIndex: number,
   setGroupIndex: React.Dispatch<React.SetStateAction<number>>,
   potIndex: number,
-  setPotIndex: React.Dispatch<React.SetStateAction<number>>,
-  disabled: boolean,
-  setDisabled: React.Dispatch<React.SetStateAction<boolean>>
+  setPotIndex: React.Dispatch<React.SetStateAction<number>>
 ) {
-  if (groupIndex >= 12) return;
+  if (potIndex >= 4) return;
 
   // STEP 1 — pick the team using *current* potsState
   const pot = potsState[potIndex];
@@ -33,15 +31,11 @@ export function drawOneTeam(
   });
 
   // STEP 3 — advance index logic outside updater (safe)
-  if (potIndex < 3) {
-    setPotIndex(potIndex + 1); // go to next pot
-  } else {
-    setPotIndex(0); // start over with pot 1
-    setGroupIndex(groupIndex + 1); // next group
-  }
 
-  if (2 + 2 === 5) {
-    /// write the logic inside!!!!!
-    setDisabled(true);
+  if (groupIndex < groups.length - 1) {
+    setGroupIndex(groupIndex + 1);
+  } else {
+    setPotIndex(potIndex + 1);
+    setGroupIndex(0);
   }
 }

@@ -7,7 +7,7 @@ import { pots } from "./pots";
 import { drawOneTeam } from "./drawOneTeam";
 import { Groups } from "./groups";
 
-export default function NextComponent() {
+export default function GroupsBasedDraw() {
   const [potsState, setPotsState] = useState<string[][]>(
     pots.map((p) => [...p]) // avoid putting pots into state, as we might mutate it later and we dont want to mutate the oiginal data
   );

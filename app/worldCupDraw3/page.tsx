@@ -7,7 +7,7 @@ import { pots } from "./pots";
 import { drawOneTeam } from "./drawOneTeam";
 import { Groups } from "./groups";
 
-export default function NextComponent() {
+export default function PotsBasedDraw() {
   const [potsState, setPotsState] = useState<string[][]>(
     pots.map((p) => [...p]) // avoid putting pots into state, as we might mutate it later and we dont want to mutate the oiginal data
   );
@@ -16,7 +16,10 @@ export default function NextComponent() {
   );
   const [groupIndex, setGroupIndex] = useState(0); // 0 → 11
   const [potIndex, setPotIndex] = useState(0); // 0 -> 3
-  const [disabled, setDisabled] = useState(false);
+
+  const isFinished = potIndex > 3;
+
+  console.log(isFinished);
 
   const handleNextTeam = () => {
     drawOneTeam(
@@ -27,9 +30,7 @@ export default function NextComponent() {
       groupIndex,
       setGroupIndex,
       potIndex,
-      setPotIndex,
-      disabled,
-      setDisabled
+      setPotIndex
     );
   };
 
@@ -38,8 +39,6 @@ export default function NextComponent() {
     setGroups(Array.from({ length: 12 }, () => []));
     setGroupIndex(0);
     setPotIndex(0);
-    // i think
-    setDisabled(false);
   };
 
   return (
@@ -54,8 +53,8 @@ export default function NextComponent() {
       <div>
         <button
           onClick={handleNextTeam}
-          className="bg-blue-500 p-3 m-5 hover:bg-blue-400"
-          disabled={disabled}
+          className="bg-blue-500 p-3 m-5 hover:bg-blue-400 disabled:hover:bg-blue-500 disabled:opacity-35"
+          disabled={isFinished}
         >
           Hand of Materazzi
         </button>
