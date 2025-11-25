@@ -6,7 +6,9 @@ export function drawOneTeam(
   groupIndex: number,
   setGroupIndex: React.Dispatch<React.SetStateAction<number>>,
   potIndex: number,
-  setPotIndex: React.Dispatch<React.SetStateAction<number>>
+  setPotIndex: React.Dispatch<React.SetStateAction<number>>,
+  disabled: boolean,
+  setDisabled: React.Dispatch<React.SetStateAction<boolean>>
 ) {
   if (groupIndex >= 12) return;
 
@@ -36,5 +38,10 @@ export function drawOneTeam(
   } else {
     setPotIndex(0); // start over with pot 1
     setGroupIndex(groupIndex + 1); // next group
+  }
+
+  if (2 + 2 === 5) {
+    /// write the logic inside!!!!!
+    setDisabled(true);
   }
 }

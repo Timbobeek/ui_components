@@ -16,6 +16,7 @@ export default function NextComponent() {
   );
   const [groupIndex, setGroupIndex] = useState(0); // 0 → 11
   const [potIndex, setPotIndex] = useState(0); // 0 -> 3
+  const [disabled, setDisabled] = useState(false);
 
   const handleNextTeam = () => {
     drawOneTeam(
@@ -26,7 +27,9 @@ export default function NextComponent() {
       groupIndex,
       setGroupIndex,
       potIndex,
-      setPotIndex
+      setPotIndex,
+      disabled,
+      setDisabled
     );
   };
 
@@ -50,6 +53,7 @@ export default function NextComponent() {
         <button
           onClick={handleNextTeam}
           className="bg-blue-500 p-3 m-5 hover:bg-blue-400"
+          disabled={disabled}
         >
           Hand of Materazzi
         </button>
