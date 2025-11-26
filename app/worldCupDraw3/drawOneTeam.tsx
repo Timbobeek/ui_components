@@ -8,7 +8,7 @@ export function drawOneTeam(
   potIndex: number,
   setPotIndex: React.Dispatch<React.SetStateAction<number>>
 ) {
-  if (potIndex >= 4) return;
+  if (potIndex >= potsState.length) return;
 
   // STEP 1 — pick the team using *current* potsState
   const pot = potsState[potIndex];

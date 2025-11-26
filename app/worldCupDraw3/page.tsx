@@ -17,9 +17,7 @@ export default function PotsBasedDraw() {
   const [groupIndex, setGroupIndex] = useState(0); // 0 → 11
   const [potIndex, setPotIndex] = useState(0); // 0 -> 3
 
-  const isFinished = potIndex > 3;
-
-  console.log(isFinished);
+  const isFinished = potIndex > pots.length - 1;
 
   const handleNextTeam = () => {
     drawOneTeam(
@@ -73,7 +71,9 @@ export default function PotsBasedDraw() {
           <p className="text-2xl m-5 text-center text-pink-300">
             Challening parts{" "}
           </p>
-          <p className=""></p>
+          <p className="">
+            Rewriting group based draw into pots based draw is a brain exercise.{" "}
+          </p>
         </div>
         <div className="m-5 bg-lime-900 p-3 border-4 border-white w-1/2 ">
           <p className="text-2xl m-5 text-center text-lime-300">
