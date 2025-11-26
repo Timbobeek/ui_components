@@ -110,6 +110,13 @@ export default function Home() {
           </button>
         </Link>
       </div>
+      <div>
+        <Link href="/worldCupDraw4">
+          <button className="bg-rose-500 text-white p-7 hover:bg-pink-400">
+            World Cup Draw v4
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
