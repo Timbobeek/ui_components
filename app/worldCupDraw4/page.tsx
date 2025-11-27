@@ -6,6 +6,7 @@ import { useState } from "react";
 import { pots } from "./pots";
 import { drawOneTeam } from "./drawOneTeam";
 import { Groups } from "./groups";
+import { ListOfPots } from "./listOfPots";
 
 export default function PotsBasedDrawFinal() {
   const [potsState, setPotsState] = useState<string[][]>(
@@ -65,6 +66,7 @@ export default function PotsBasedDrawFinal() {
       </div>
 
       <p>each click adds a new team in a group, pot by pot</p>
+      <ListOfPots pots={potsState} />
       <Groups teams={groups} />
       <div className="flex w-1/2 ">
         <div className="m-5 bg-pink-900 p-3 border-4 border-white w-1/2 ">
