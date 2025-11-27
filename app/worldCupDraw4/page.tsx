@@ -45,9 +45,9 @@ export default function PotsBasedDrawFinal() {
       <Link href="/">
         <MoveLeft className="m-5" />
       </Link>
-      <header className="text-5xl text-orange-500 mt-5 text-center">
+      <header className="text-5xl text-rose-500 mt-5 text-center">
         <p>World Cup Draw UI</p>
-        <p>(Gradual Pots First)</p>
+        <p>(Gradual Pots First + Pots UI)</p>
       </header>
       <div>
         <button
