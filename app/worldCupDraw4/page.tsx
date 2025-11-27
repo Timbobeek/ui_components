@@ -73,9 +73,7 @@ export default function PotsBasedDrawFinal() {
           <p className="text-2xl m-5 text-center text-pink-300">
             Challening parts{" "}
           </p>
-          <p className="">
-            Rewriting group based draw into pots based draw is a brain exercise.{" "}
-          </p>
+          <p className=""></p>
         </div>
         <div className="m-5 bg-lime-900 p-3 border-4 border-white w-1/2 ">
           <p className="text-2xl m-5 text-center text-lime-300">
