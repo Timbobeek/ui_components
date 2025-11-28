@@ -116,6 +116,11 @@ export default function Home() {
             World Cup Draw v4
           </button>
         </Link>
+        <Link href="/tooltip">
+          <button className="bg-lime-200 text-black p-7 hover:bg-pink-400">
+            Tooltip
+          </button>
+        </Link>
       </div>
     </div>
   );
