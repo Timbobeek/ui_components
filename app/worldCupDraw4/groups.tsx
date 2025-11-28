@@ -7,9 +7,9 @@ type Props = {
 export const Groups = (props: Props) => {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   return (
-    <div className="flex m-5">
+    <div className="flex flex-wrap m-5 justify-center">
       {props.teams.map((group: string[], index: number) => (
-        <div key={index} className="m-3 bg-green-600 w-32 h-56 text-center">
+        <div key={index} className="m-5 bg-green-600 w-60 h-48 text-center">
           <p className="text-xl text-center bg-pink-600 p-3">
             Group {alphabet[index]}{" "}
           </p>
@@ -20,7 +20,7 @@ export const Groups = (props: Props) => {
               case "UEFA A":
                 content = (
                   <div className="flex justify-center">
-                    <strong className="">UEFA A</strong>
+                    <strong className="text-lg">UEFA A</strong>
 
                     <div className="relative group inline-block">
                       <span className=" cursor-pointer">
@@ -47,7 +47,7 @@ export const Groups = (props: Props) => {
               case "UEFA B":
                 content = (
                   <div className="flex justify-center">
-                    <strong className="">UEFA B</strong>
+                    <strong className="text-lg">UEFA B</strong>
 
                     <div className="relative group inline-block">
                       <span className=" cursor-pointer">
@@ -74,7 +74,7 @@ export const Groups = (props: Props) => {
               case "UEFA C":
                 content = (
                   <div className="flex justify-center">
-                    <strong className="">UEFA C</strong>
+                    <strong className="text-lg">UEFA C</strong>
 
                     <div className="relative group inline-block">
                       <span className=" cursor-pointer">
@@ -101,7 +101,7 @@ export const Groups = (props: Props) => {
               case "UEFA D":
                 content = (
                   <div className="flex justify-center">
-                    <strong className="">UEFA D</strong>
+                    <strong className="text-lg">UEFA D</strong>
 
                     <div className="relative group inline-block">
                       <span className=" cursor-pointer">
@@ -128,7 +128,7 @@ export const Groups = (props: Props) => {
               case "INTER-CON A":
                 content = (
                   <div className="flex justify-center">
-                    <strong className="">INTER-CON A</strong>
+                    <strong className="text-lg">INTER-CON A</strong>
 
                     <div className="relative group inline-block">
                       <span className=" cursor-pointer">
@@ -155,7 +155,7 @@ export const Groups = (props: Props) => {
               case "INTER-CON B":
                 content = (
                   <div className="flex justify-center">
-                    <strong className="">INTER-CON B</strong>
+                    <strong className="text-lg">INTER-CON B</strong>
 
                     <div className="relative group inline-block">
                       <span className=" cursor-pointer">
@@ -180,11 +180,11 @@ export const Groups = (props: Props) => {
                 );
                 break;
               default:
-                content = <strong>{team}</strong>;
+                content = <strong className="text-lg">{team}</strong>;
             }
 
             return (
-              <div key={index} className=" text-white ">
+              <div key={index} className=" text-white m-1">
                 {content}
               </div>
             );
