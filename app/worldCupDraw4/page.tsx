@@ -79,7 +79,12 @@ export default function PotsBasedDrawFinal() {
           <p className="text-2xl m-5 text-center text-lime-300">
             Things I learned here{" "}
           </p>
-          <p></p>
+          <p>
+            Learning to apply a switch. I wanted to add a tooltip to specific
+            teams in the pots/groups. Initially, i tried using conditionals, but
+            it was getting too messy since ive had 6 different cases. Switch
+            turned out to be a good option in this scenario.
+          </p>
         </div>
       </div>
     </div>
