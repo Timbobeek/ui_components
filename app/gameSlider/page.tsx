@@ -112,8 +112,8 @@ export default function CharacterStats() {
           </p>
           <p>
             I wanted to change the color of the sliders. I found that property
-            'accent' is responsible for changing the color of the handle, the
-            thing we drag/slide. I set the handle color to{" "}
+            &apos;accent&apos; is responsible for changing the color of the
+            handle, the thing we drag/slide. I set the handle color to{" "}
             <strong className="text-red-500">red</strong> and{" "}
             <strong className="text-blue-500">blue</strong>, respectively. Then
             I noticed that now my two sliders have a different track color, the
