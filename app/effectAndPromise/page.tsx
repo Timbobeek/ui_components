@@ -39,7 +39,7 @@ export default function AsyncParagraph() {
       <Paragraph
         dataVersion={version}
         loadData={() => {
-          return new Promise((resolve, reject) => {
+          return new Promise((resolve) => {
             resolve("Data from the resolved PROMISE! ASYNC");
           });
         }}
@@ -70,10 +70,15 @@ export default function AsyncParagraph() {
             Things I learned here{" "}
           </p>
           <p>
-            <em>I'm sorry but I'm just thinking of the right words to say..</em>
+            <em>
+              I&apos;m sorry but I&apos;m just thinking of the right words to
+              say..
+            </em>
           </p>
           <p>
-            <em>I know they don't sound the way I planned them to be...</em>
+            <em>
+              I know they don&apos;t sound the way I planned them to be...
+            </em>
           </p>
 
           <p>
