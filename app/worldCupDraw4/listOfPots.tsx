@@ -1,7 +1,8 @@
 import { InfoIcon } from "lucide-react";
+import { Team } from "./pots";
 
 type Props = {
-  pots: string[][];
+  pots: Team[][];
 };
 
 export const ListOfPots = (props: Props) => {
@@ -15,7 +16,7 @@ export const ListOfPots = (props: Props) => {
           {pot.map((team, index) => {
             let content;
 
-            switch (team) {
+            switch (team.name) {
               case "UEFA A":
                 content = (
                   <div className="flex justify-center">
@@ -179,12 +180,14 @@ export const ListOfPots = (props: Props) => {
                 );
                 break;
               default:
-                content = <strong>{team}</strong>;
+                content = <strong>{team.name}</strong>;
             }
 
             return (
               <div key={index} className=" text-green-700 ">
-                {content}
+                <span className={team.picked ? "opacity-15" : ""}>
+                  {content}
+                </span>
               </div>
             );
           })}
