@@ -42,7 +42,6 @@ export function drawOneTeam(
     pickedTeam = notPicked[pickedHand];
   } else {
     // normal random logic
-    // this might have to change with the addition of picked status
     pickedHand = Math.floor(Math.random() * notPicked.length);
     pickedTeam = notPicked[pickedHand];
   }
@@ -59,16 +58,7 @@ export function drawOneTeam(
   // -------------------------------------------
   setPotsState((prevPots) => {
     const newPots = prevPots.map((p) => [...p]);
-    //console.log(newPots);
-    // we dont want to remove the whole string, we just want to change its status
-    console.log("before filter", newPots[potIndex]);
     newPots[potIndex][hand].picked = true; // change the status of the picked team
-    console.log("mid filter", newPots[potIndex]);
-    //newPots[potIndex] = newPots[potIndex].filter((_, i) => i !== hand);
-    // newPots[potIndex] = newPots[potIndex].filter(
-    //   (team) => team.picked === false
-    // );
-    console.log("after filter", newPots[potIndex]);
     return newPots;
   });
 

@@ -9,9 +9,6 @@ import { Groups } from "./groups";
 import { ListOfPots } from "./listOfPots";
 
 export default function PotsBasedDrawFinal() {
-  // const [potsState, setPotsState] = useState<Team[][]>(
-  //   pots.map((p) => [...p]) // avoid putting pots into state, as we might mutate it later and we dont want to mutate the oiginal data
-  // );
   const [potsState, setPotsState] = useState<Team[][]>(
     pots.map(
       (pot) => pot.map((team) => ({ ...team })) // clone each team object
@@ -40,13 +37,7 @@ export default function PotsBasedDrawFinal() {
   };
 
   const handleReset = () => {
-    //setPotsState(pots.map((p) => [...p]));
-    setPotsState(
-      pots.map(
-        (pot) => pot.map((team) => ({ ...team })) // clone each team object
-      )
-    );
-    //console.log("potsState on reset", potsState);
+    setPotsState(pots.map((pot) => pot.map((team) => ({ ...team }))));
     setGroups(Array.from({ length: 12 }, () => []));
     setGroupIndex(0);
     setPotIndex(0);
@@ -95,7 +86,15 @@ export default function PotsBasedDrawFinal() {
           <p className="">
             In the actual draw, we already know that USA, Mexico and Canada are
             assigned to groups D, A, and B respectively. How do I edit my draw
-            logic to account for this?
+            logic to account for this? Had to add logic for forced teams that
+            adds specific teams in specific groups. I also wanted this: when a
+            team gets drawn, the spot of that team in the pot UI should be left
+            blank, no sliding of the whole list. Sliding was due to the logic
+            deleting teams from the array that goes into the pot. To change
+            that, I had to change the structure of the initial pots and add a
+            picked characteristic. This way, no teams get actually removed,
+            their status changes when they are picked. However, because of that
+            I had to rewrite the drawing logic, which was complicated.
           </p>
         </div>
         <div className="m-5 bg-lime-900 p-3 border-4 border-white w-1/2 ">
@@ -106,7 +105,12 @@ export default function PotsBasedDrawFinal() {
             Learning to apply a switch. I wanted to add a tooltip to specific
             teams in the pots/groups. Initially, i tried using conditionals, but
             it was getting too messy since ive had 6 different cases. Switch
-            turned out to be a good option in this scenario.
+            turned out to be a good option in this scenario. Also, pots should
+            have been written as an object from the beginning to avoid
+            complications when rewriting. This way, if we wanted to add
+            characteristics to each team object, it is easier to do so and our
+            draw logic is already prepared for working with objects instead of
+            strings.
           </p>
         </div>
       </div>

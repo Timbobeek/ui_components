@@ -8,8 +8,6 @@ type Props = {
 export const ListOfPots = (props: Props) => {
   const pots = Object.values(props);
 
-  console.log("pots that get rendered", pots); // pots that get here already delete a team -WRONG
-
   return (
     <div className="flex">
       {pots[0].map((pot, index) => (
@@ -184,8 +182,6 @@ export const ListOfPots = (props: Props) => {
               default:
                 content = <strong>{team.name}</strong>;
             }
-
-            //console.log({ team });
 
             return (
               <div key={index} className=" text-green-700 ">
