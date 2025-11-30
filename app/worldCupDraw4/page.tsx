@@ -3,15 +3,21 @@
 import Link from "next/link";
 import { MoveLeft } from "lucide-react";
 import { useState } from "react";
-import { pots } from "./pots";
+import { pots, Team } from "./pots";
 import { drawOneTeam } from "./drawOneTeam";
 import { Groups } from "./groups";
 import { ListOfPots } from "./listOfPots";
 
 export default function PotsBasedDrawFinal() {
-  const [potsState, setPotsState] = useState<string[][]>(
-    pots.map((p) => [...p]) // avoid putting pots into state, as we might mutate it later and we dont want to mutate the oiginal data
+  // const [potsState, setPotsState] = useState<Team[][]>(
+  //   pots.map((p) => [...p]) // avoid putting pots into state, as we might mutate it later and we dont want to mutate the oiginal data
+  // );
+  const [potsState, setPotsState] = useState<Team[][]>(
+    pots.map(
+      (pot) => pot.map((team) => ({ ...team })) // clone each team object
+    )
   );
+  console.log("potsState", pots);
   const [groups, setGroups] = useState<string[][]>(
     Array.from({ length: 12 }, () => [])
   );
@@ -34,7 +40,13 @@ export default function PotsBasedDrawFinal() {
   };
 
   const handleReset = () => {
-    setPotsState(pots.map((p) => [...p]));
+    //setPotsState(pots.map((p) => [...p]));
+    setPotsState(
+      pots.map(
+        (pot) => pot.map((team) => ({ ...team })) // clone each team object
+      )
+    );
+    //console.log("potsState on reset", potsState);
     setGroups(Array.from({ length: 12 }, () => []));
     setGroupIndex(0);
     setPotIndex(0);

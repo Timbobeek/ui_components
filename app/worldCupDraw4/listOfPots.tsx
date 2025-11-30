@@ -1,11 +1,14 @@
 import { InfoIcon } from "lucide-react";
+import { Team } from "./pots";
 
 type Props = {
-  pots: string[][];
+  pots: Team[][];
 };
 
 export const ListOfPots = (props: Props) => {
   const pots = Object.values(props);
+
+  console.log("pots that get rendered", pots); // pots that get here already delete a team -WRONG
 
   return (
     <div className="flex">
@@ -15,7 +18,7 @@ export const ListOfPots = (props: Props) => {
           {pot.map((team, index) => {
             let content;
 
-            switch (team) {
+            switch (team.name) {
               case "UEFA A":
                 content = (
                   <div className="flex justify-center">
@@ -179,12 +182,16 @@ export const ListOfPots = (props: Props) => {
                 );
                 break;
               default:
-                content = <strong>{team}</strong>;
+                content = <strong>{team.name}</strong>;
             }
+
+            //console.log({ team });
 
             return (
               <div key={index} className=" text-green-700 ">
-                {content}
+                <span className={team.picked ? "opacity-15" : ""}>
+                  {content}
+                </span>
               </div>
             );
           })}
