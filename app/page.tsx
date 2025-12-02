@@ -121,6 +121,11 @@ export default function Home() {
             Tooltip
           </button>
         </Link>
+        <Link href="/draggableList">
+          <button className="bg-teal-500 text-white p-7 hover:bg-pink-400">
+            Draggable List
+          </button>
+        </Link>
       </div>
     </div>
   );
