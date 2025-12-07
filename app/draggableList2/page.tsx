@@ -12,9 +12,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { MoveLeft } from "lucide-react";
 
-type Item = { id: string; label: string };
+type Item = { id: string; label: string; background: string };
 
-const SortableItem = ({ id, label }: Item) => {
+const SortableItem = ({ id, label, background }: Item) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
@@ -29,7 +29,7 @@ const SortableItem = ({ id, label }: Item) => {
       style={style}
       {...attributes}
       {...listeners}
-      className="p-3 mb-2 bg-green-500 shadow rounded cursor-grab active:cursor-grabbing select-none"
+      className={`${background} p-3 mb-2 shadow rounded cursor-grab active:cursor-grabbing select-none`}
     >
       {label}
     </div>
@@ -38,10 +38,10 @@ const SortableItem = ({ id, label }: Item) => {
 
 export default function SortableList() {
   const [items, setItems] = useState<Item[]>([
-    { id: "1", label: "Item One" },
-    { id: "2", label: "Item Two" },
-    { id: "3", label: "Item Three" },
-    { id: "4", label: "Item Four" },
+    { id: "1", label: "Item One", background: "bg-green-500" },
+    { id: "2", label: "Item Two", background: "bg-red-500" },
+    { id: "3", label: "Item Three", background: "bg-yellow-500" },
+    { id: "4", label: "Item Four", background: "bg-blue-500" },
   ]);
 
   const handleDragEnd = (event: DragEndEvent) => {
