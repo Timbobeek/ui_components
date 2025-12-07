@@ -15,14 +15,17 @@ export default function DraggableList(): JSX.Element {
   ]);
 
   const onDragStart = (e: React.DragEvent, index: number) => {
-    e.dataTransfer.setData("text/plain", String(index));
+    //when you start dragging
+    e.dataTransfer.setData("text/plain", String(index)); //stores the index of the dragged item.
   };
 
   const onDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
+    //is triggered continuously whenever a draggable element is dragged
+    e.preventDefault(); //Browsers block dropping by default, so this line is required to allow a drop on the list items
   };
 
   const onDrop = (e: React.DragEvent, dropIndex: number) => {
+    //when you drop the element
     e.preventDefault();
     const srcIndex = Number(e.dataTransfer.getData("text/plain"));
     if (srcIndex === dropIndex) return;
