@@ -132,6 +132,13 @@ export default function Home() {
           </button>
         </Link>
       </div>
+      <div>
+        <Link href="/draggableList2">
+          <button className="bg-indigo-300 text-black p-7 hover:bg-pink-400">
+            Draggable List v2
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
