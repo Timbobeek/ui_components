@@ -27,10 +27,11 @@ export default function DraggableList(): JSX.Element {
   const onDrop = (e: React.DragEvent, dropIndex: number) => {
     //when you drop the element
     e.preventDefault();
-    const srcIndex = Number(e.dataTransfer.getData("text/plain"));
-    if (srcIndex === dropIndex) return;
+    const srcIndex = Number(e.dataTransfer.getData("text/plain")); //the index of the item being dragged
+    if (srcIndex === dropIndex) return; //If the dragged item is dropped on itself, we do nothing
 
     setItems((prev) => {
+      // sets new order
       const next = [...prev];
       const [moved] = next.splice(srcIndex, 1);
       next.splice(dropIndex, 0, moved);
@@ -44,6 +45,7 @@ export default function DraggableList(): JSX.Element {
         <MoveLeft className="m-5" />
       </Link>
       <header className="text-5xl text-teal-500 mt-5">Draggable List</header>
+      <p className="text-teal-500">(no animation on drag)</p>
       <div className="p-4 w-1/4">
         <ul className="space-y-2">
           {items.map((item, index) => (
@@ -70,6 +72,24 @@ export default function DraggableList(): JSX.Element {
         <p className="mt-5 bg-purple-700">
           non-draggable text (text select cursor on text)
         </p>
+      </div>
+      <div className="flex w-1/2 ">
+        <div className="m-5 bg-pink-900 p-3 border-4 border-white w-1/2 ">
+          <p className="text-2xl m-5 text-center text-pink-300">
+            Challening parts{" "}
+          </p>
+          <p className="">
+            I did not write the mechanism for this, this was all new knowledge.
+          </p>
+        </div>
+        <div className="m-5 bg-lime-900 p-3 border-4 border-white w-1/2 ">
+          <p className="text-2xl m-5 text-center text-lime-300">
+            Things I learned here{" "}
+          </p>
+          <p>
+            Basics of drag and drop code. How html draggable attribute works.
+          </p>
+        </div>
       </div>
     </div>
   );
