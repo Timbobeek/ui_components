@@ -103,7 +103,7 @@ export default function RacingLights() {
       <Link href="/">
         <MoveLeft className="m-5" />
       </Link>
-      <header className="text-5xl text-stone-200 mt-5">Racing Lights</header>
+      <header className="text-5xl text-gray-500 mt-5">Racing Lights</header>
 
       <div>
         {Array.from({ length: lightsCount }).map((_, i) => (
