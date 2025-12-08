@@ -138,6 +138,11 @@ export default function Home() {
             Draggable List v2
           </button>
         </Link>
+        <Link href="/tournamentBracket">
+          <button className="bg-white text-black p-7 hover:bg-pink-400">
+            Tournament Bracket
+          </button>
+        </Link>
       </div>
     </div>
   );
