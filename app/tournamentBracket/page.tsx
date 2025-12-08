@@ -22,7 +22,7 @@ export default function TournamentBracket() {
       <header className="text-2xl text-green-500 mt-5">Group Stage</header>
       <div className="w-1/5 m-2">
         {groups.map((group, groupIndex) => (
-          <div className="">
+          <div key={groupIndex}>
             <p className="text-xl text-center">Group {groupIndex}</p>
             <SortableList
               key={groupIndex}
