@@ -1,62 +1,15 @@
 "use client";
 
-import { DndContext, DragEndEvent, closestCenter } from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  useSortable,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
 import Link from "next/link";
 import { MoveLeft } from "lucide-react";
-import {
-  restrictToParentElement,
-  restrictToVerticalAxis,
-} from "@dnd-kit/modifiers";
 
-type Item = { id: string; label: string; background: string };
+import SortableList from "./group";
 
-const SortableItem = ({ id, label, background }: Item) => {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id });
+import { Team, teams } from "./teams";
 
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
-
-  return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      className={`${background} p-3 shadow rounded cursor-grab active:cursor-grabbing select-none`} // can return margins later if needed
-    >
-      {label}
-    </div>
-  );
-};
-
-export default function SortableList() {
-  const [items, setItems] = useState<Item[]>([
-    { id: "1", label: "Item One", background: "bg-green-500" },
-    { id: "2", label: "Item Two", background: "bg-red-500" },
-    { id: "3", label: "Item Three", background: "bg-yellow-500" },
-    { id: "4", label: "Item Four", background: "bg-blue-500" },
-  ]);
-
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-    if (!over || active.id === over.id) return;
-
-    const oldIndex = items.findIndex((i) => i.id === active.id);
-    const newIndex = items.findIndex((i) => i.id === over.id);
-
-    setItems(arrayMove(items, oldIndex, newIndex));
-  };
+export default function TournamentBracket() {
+  const [groups, setGroups] = useState<Team[][]>(teams);
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -65,22 +18,46 @@ export default function SortableList() {
       </Link>
       <header className="text-5xl text-white mt-5">Tournament Bracket</header>
       <p className=" text-white ">dnd-kit library</p>
-      <div className=" w-1/4 mt-8">
-        <DndContext
-          collisionDetection={closestCenter}
-          onDragEnd={handleDragEnd}
-          modifiers={[restrictToParentElement, restrictToVerticalAxis]} //adds verticla dragging limitation
-        >
-          <SortableContext
-            items={items.map((i) => i.id)}
-            strategy={verticalListSortingStrategy}
-          >
-            {items.map((item) => (
-              <SortableItem key={item.id} {...item} />
-            ))}
-          </SortableContext>
-        </DndContext>
+
+      <header className="text-2xl text-green-500 mt-5">Group Stage</header>
+      <div className="w-1/5 m-2">
+        {groups.map((group, groupIndex) => (
+          <div className="">
+            <p className="text-xl text-center">Group {groupIndex}</p>
+            <SortableList
+              key={groupIndex}
+              items={group}
+              setItems={(newGroup) => {
+                const newGroups = [...groups];
+                newGroups[groupIndex] = newGroup;
+                setGroups(newGroups);
+              }}
+            />
+          </div>
+        ))}
       </div>
+
+      {/* i need to think of a good way to pick a team in the bracket */}
+      <div className=" m-10">
+        <header className="text-3xl">1/2</header>
+        <div className="bg-yellow-400 m-3">
+          <div>{groups[0][0].label}</div>
+          <div>{groups[1][1].label}</div>
+        </div>
+        <div className="bg-green-600 m-3">
+          <div>{groups[1][0].label}</div>
+          <div>{groups[0][1].label}</div>
+        </div>
+      </div>
+
+      <div className=" m-10">
+        <header className="text-3xl">Final</header>
+        <div className="bg-yellow-400 m-3">
+          <div>{groups[0][0].label}</div>
+          <div>{groups[1][1].label}</div>
+        </div>
+      </div>
+
       <div className="flex w-1/2 ">
         <div className="m-5 bg-pink-900 p-3 border-4 border-white w-1/2 ">
           <p className="text-2xl m-5 text-center text-pink-300">
@@ -92,7 +69,9 @@ export default function SortableList() {
           <p className="text-2xl m-5 text-center text-lime-300">
             Things I learned here{" "}
           </p>
-          <p></p>
+          <p>
+            Use the drag and drop mechanism for multiple lists on the same page
+          </p>
         </div>
       </div>
     </div>
