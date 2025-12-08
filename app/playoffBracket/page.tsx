@@ -1,58 +1,41 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MoveLeft } from "lucide-react";
 import { teams } from "./teams";
 
 export default function NextComponent() {
-  const [selected1, setSelected1] = useState(false);
-  const [selected2, setSelected2] = useState(false);
-  const [selected3, setSelected3] = useState(false);
-  const [selected4, setSelected4] = useState(false);
-  const [selected5, setSelected5] = useState(false);
-  const [selected6, setSelected6] = useState(false);
+  const [contenders, setContenders] = useState(teams);
 
   const handleClick1 = () => {
-    if (selected2 === true) {
-      setSelected2(false);
+    if (contenders[0][1].selected === true) {
+      setContenders((prev) => {
+        const copy = prev.map((group) => [...group]); // shallow clone each group
+        copy[0][1] = { ...copy[0][1], selected: false };
+        return copy;
+      });
     }
-    setSelected1(true);
+    setContenders((prev) => {
+      const copy = prev.map((group) => [...group]);
+      copy[0][0] = { ...copy[0][0], selected: true };
+      return copy;
+    });
   };
 
   const handleClick2 = () => {
-    if (selected1 === true) {
-      setSelected1(false);
+    if (contenders[0][0].selected === true) {
+      setContenders((prev) => {
+        const copy = prev.map((group) => [...group]);
+        copy[0][0] = { ...copy[0][0], selected: false };
+        return copy;
+      });
     }
-    setSelected2(true);
-  };
-
-  const handleClick3 = () => {
-    if (selected4 === true) {
-      setSelected4(false);
-    }
-    setSelected3(true);
-  };
-
-  const handleClick4 = () => {
-    if (selected3 === true) {
-      setSelected3(false);
-    }
-    setSelected4(true);
-  };
-
-  const handleClick5 = () => {
-    if (selected6 === true) {
-      setSelected6(false);
-    }
-    setSelected5(true);
-  };
-
-  const handleClick6 = () => {
-    if (selected5 === true) {
-      setSelected5(false);
-    }
-    setSelected6(true);
+    setContenders((prev) => {
+      const copy = prev.map((group) => [...group]);
+      copy[0][1] = { ...copy[0][1], selected: true };
+      return copy;
+    });
   };
 
   return (
@@ -66,7 +49,7 @@ export default function NextComponent() {
           <div className="flex flex-col">
             <button
               className={` text-black p-5 m-3 hover:bg-yellow-300 ${
-                selected1 ? "bg-yellow-300" : "bg-green-500"
+                contenders[0][0].selected ? "bg-yellow-300" : "bg-green-500"
               }`}
               onClick={handleClick1}
             >
@@ -74,19 +57,19 @@ export default function NextComponent() {
             </button>
             <button
               className={` text-black p-5 m-3 hover:bg-yellow-300 ${
-                selected2 ? "bg-yellow-300" : "bg-green-500"
+                contenders[0][1].selected ? "bg-yellow-300" : "bg-green-500"
               }`}
               onClick={handleClick2}
             >
               Argentina
             </button>
           </div>
-          <div className="flex flex-col">
+          {/* <div className="flex flex-col">
             <button
               className={` text-black p-5 m-3 hover:bg-yellow-300 ${
                 selected3 ? "bg-yellow-300" : "bg-green-500"
               }`}
-              onClick={handleClick3}
+              onClick={handleClick}
             >
               Spain
             </button>
@@ -94,19 +77,19 @@ export default function NextComponent() {
               className={` text-black p-5 m-3 hover:bg-yellow-300 ${
                 selected4 ? "bg-yellow-300" : "bg-green-500"
               }`}
-              onClick={handleClick4}
+              onClick={handleClick}
             >
               Germany
             </button>
-          </div>
+          </div> */}
         </div>
         {/* -----------------------next stage-------------------------- */}
-        <div className="flex flex-col w-1/4 justify-center">
+        {/* <div className="flex flex-col w-1/4 justify-center">
           <button
             className={` text-black p-5 m-3 hover:bg-yellow-300 ${
               selected5 ? "bg-yellow-300" : "bg-green-500"
             }`}
-            onClick={handleClick5}
+            onClick={handleClick}
           >
             Brazil
           </button>
@@ -114,17 +97,18 @@ export default function NextComponent() {
             className={` text-black p-5 m-3 hover:bg-yellow-300 ${
               selected6 ? "bg-yellow-300" : "bg-green-500"
             }`}
-            onClick={handleClick6}
+            onClick={handleClick}
           >
             Argentina
           </button>
-        </div>
+        </div> */}
         {/* -----------------------champion-------------------------- */}
-        <div className="flex flex-col items-center justify-center">
-          <p className="text-black font-bold bg-red-400 h-1/4">
+        {/* <div className="flex flex-col items-center justify-center">
+          <div className="text-black font-bold bg-red-400 h-1/4 flex flex-col items-center">
             2026 FIFA World Cup Winners
-          </p>
-        </div>
+            <p className="text-3xl">Brazil</p>
+          </div>
+        </div> */}
       </div>
     </div>
   );
