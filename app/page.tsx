@@ -148,6 +148,11 @@ export default function Home() {
             Playoff Bracket
           </button>
         </Link>
+        <Link href="/playoffBracket2">
+          <button className="bg-yellow-300 text-black p-7 hover:bg-pink-400">
+            Playoff Bracket v2
+          </button>
+        </Link>
       </div>
     </div>
   );
