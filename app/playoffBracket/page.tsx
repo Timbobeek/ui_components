@@ -4,42 +4,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { MoveLeft } from "lucide-react";
 import { teams } from "./teams";
-import { match } from "assert";
 
 export default function NextComponent() {
   const [contenders, setContenders] = useState(teams);
 
-  const handleClick1 = () => {
-    if (contenders[0][1].selected === true) {
-      setContenders((prev) => {
-        const copy = prev.map((group) => [...group]); // shallow clone each group
-        copy[0][1] = { ...copy[0][1], selected: false };
-        return copy;
-      });
-    }
-    setContenders((prev) => {
-      const copy = prev.map((group) => [...group]);
-      copy[0][0] = { ...copy[0][0], selected: true };
-      return copy;
-    });
-  };
-
-  const handleClick2 = () => {
-    if (contenders[0][0].selected === true) {
-      setContenders((prev) => {
-        const copy = prev.map((group) => [...group]);
-        copy[0][0] = { ...copy[0][0], selected: false };
-        return copy;
-      });
-    }
-    setContenders((prev) => {
-      const copy = prev.map((group) => [...group]);
-      copy[0][1] = { ...copy[0][1], selected: true };
-      return copy;
-    });
-  };
-
-  //prototype
   const handleClick = ({
     matchID,
     teamID,
@@ -69,6 +37,8 @@ export default function NextComponent() {
       return copy;
     });
   };
+
+  console.log(contenders);
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -119,7 +89,7 @@ export default function NextComponent() {
         {/* <div className="flex flex-col w-1/4 justify-center">
           <button
             className={` text-black p-5 m-3 hover:bg-yellow-300 ${
-              selected5 ? "bg-yellow-300" : "bg-green-500"
+              contenders[0] ? "bg-yellow-300" : "bg-green-500"
             }`}
             onClick={handleClick}
           >
@@ -153,7 +123,21 @@ export default function NextComponent() {
             two teams in each match-up. The chosen team's state transfers to the
             next stage of the bracket. Finding the ideal type to keep the teams
             in for all of the future manipulations is important. I want to avoid
-            having 60 handleClick functions.
+            having 60 handleClick functions.<br></br> Challenge 1: Question: I
+            am considering the logic for next phase of the bracket. Let's say I
+            selected a team in each pair. Then, all these selected teams move
+            onto the next stage. And so on until the final where last two teams
+            meet. These are options I came up with: 1. Add selected2,selected3
+            and so on to each team object in teams and switch those around.
+            Problem with it is that handleClick will become huge with all the
+            state changes of different selected. 2. Keep the handleClick the
+            same, but make a dynamic const teams. For example, if Brazil and
+            Iceland are selected, we generate a new array with two objects that
+            are copies of Brazil and Iceland objects. This new array will have
+            selected at false again. Issues here: once i select a team to go to
+            the next phase, i add that team to the new array. What if i ended up
+            changing that team, that means the object in the new array needs to
+            be adjusted/rewritten?
           </p>
         </div>
         <div className="m-5 bg-lime-900 p-3 border-4 border-white w-1/2 ">

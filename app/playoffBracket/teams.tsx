@@ -22,16 +22,16 @@ export const teams = [
   ],
   [
     {
-      id: "1",
+      id: "5",
       label: "Argentina",
       selected: false,
       background: "bg-green-500",
     },
-    { id: "2", label: "Mexico", selected: false, background: "bg-red-500" },
+    { id: "6", label: "Mexico", selected: false, background: "bg-red-500" },
   ],
   [
-    { id: "3", label: "Ghana", selected: false, background: "bg-yellow-500" },
-    { id: "4", label: "Poland", selected: false, background: "bg-blue-500" },
+    { id: "7", label: "Ghana", selected: false, background: "bg-yellow-500" },
+    { id: "8", label: "Poland", selected: false, background: "bg-blue-500" },
   ],
 ];
 
