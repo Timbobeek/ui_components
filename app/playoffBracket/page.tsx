@@ -120,11 +120,11 @@ export default function NextComponent() {
           <p className="">
             A lot of states. I have an overall state of all teams present at the
             beginning fo the tournament. Then the user has to choose one of the
-            two teams in each match-up. The chosen team's state transfers to the
+            two teams in each match-up. The chosen teams state transfers to the
             next stage of the bracket. Finding the ideal type to keep the teams
             in for all of the future manipulations is important. I want to avoid
             having 60 handleClick functions.<br></br> Challenge 1: Question: I
-            am considering the logic for next phase of the bracket. Let's say I
+            am considering the logic for next phase of the bracket. Lets say I
             selected a team in each pair. Then, all these selected teams move
             onto the next stage. And so on until the final where last two teams
             meet. These are options I came up with: 1. Add selected2,selected3
