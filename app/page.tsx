@@ -149,7 +149,7 @@ export default function Home() {
           </button>
         </Link>
         <Link href="/playoffBracket2">
-          <button className="bg-yellow-300 text-black p-7 hover:bg-pink-400">
+          <button className="bg-rose-600 text-white p-7 hover:bg-pink-400">
             Playoff Bracket v2
           </button>
         </Link>
