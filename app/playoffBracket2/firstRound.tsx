@@ -21,19 +21,19 @@ export const initialBracket: Bracket = [
     {
       id: "2",
       label: "Canada",
-      background: "bg-red-500",
+      background: "bg-green-500",
     },
   ],
   [
     {
       id: "3",
       label: "Ivory Coast",
-      background: "bg-yellow-500",
+      background: "bg-green-500",
     },
     {
       id: "4",
       label: "Iceland",
-      background: "bg-blue-500",
+      background: "bg-green-500",
     },
   ],
   [
@@ -45,19 +45,19 @@ export const initialBracket: Bracket = [
     {
       id: "6",
       label: "Mexico",
-      background: "bg-red-500",
+      background: "bg-green-500",
     },
   ],
   [
     {
       id: "7",
       label: "Ghana",
-      background: "bg-yellow-500",
+      background: "bg-green-500",
     },
     {
       id: "8",
       label: "Poland",
-      background: "bg-blue-500",
+      background: "bg-green-500",
     },
   ],
 ];
