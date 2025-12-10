@@ -9,7 +9,7 @@ export type Team = {
 export type Match = [Team, Team];
 
 // A bracket is multiple rounds, each round is multiple matches
-export type Bracket = Match[][];
+export type Bracket = Match[];
 
 export const initialBracket: Bracket = [
   [
